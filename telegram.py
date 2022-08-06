@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 import random
 import json
+import os
 
 from telebot.types import InputMediaPhoto
 
@@ -41,7 +42,7 @@ class RecipeEngine:
 
 
 
-vegerecipesbot = telebot.TeleBot("5324211853:AAHgF2PBs4D4l-O3d_yxuy9pruTI1ckp6hE", parse_mode=None)
+vegerecipesbot = telebot.TeleBot(os.getenv('token'), parse_mode=None)
 previous_message = ''
 any_recipe = RecipeEngine()
 
@@ -99,11 +100,6 @@ def send_resipe_by_ingr(message):
         for recipe in any_recipe.get_reciepe_by_ingredient(message.text):
             send_recipe(recipe, message)
     previous_message = None
-
-
-
-
-
 
 
 vegerecipesbot.infinity_polling()
